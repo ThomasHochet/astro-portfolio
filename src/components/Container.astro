@@ -1,0 +1,148 @@
+---
+import { Icon } from "astro-icon/components";
+import AccordionLayout from "../layouts/AccordionLayout.astro";
+import Card from "./Card.astro";
+import ContactCard from "./ContactCard.astro";
+//const PDF = "/cv-20240219.pdf";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const works = t('works') || [];
+const studies = t('studies') || [];
+const contacts = t('contacts') || [];
+---
+
+<div class="join join-vertical gap-1">
+  <AccordionLayout title={t('about.title')} icon={"carbon:identification"}>
+    <article class="prose text-justify">
+      <Fragment set:html={t('about.description')} />
+    </article>
+  </AccordionLayout>
+
+  <AccordionLayout title={t('titles.work')} icon={"carbon:construction"}>
+    {
+      works.map((item) => {
+        return (
+          <Card
+            title={item.title}
+            timeframe={item.date}
+            description={item.desc}
+            tags={item.tags}
+            url={item.url}
+            url_name={item.org}
+            location={item.location}
+          />
+        );
+      })
+    }
+  </AccordionLayout>
+
+  <AccordionLayout title={t('titles.studies')} icon={"carbon:education"}>
+    {
+      studies.map((item) => {
+        return (
+          <Card
+            title={item.title}
+            timeframe={item.date}
+            location={item.location}
+            tags={item.tags}
+            url={item.url}
+            url_name={item.org}
+          />
+        );
+      })
+    }
+  </AccordionLayout>
+
+  <!-- <AccordionLayout title={"Projects"} icon={"carbon:tools"}>
+    {
+      projects.map((item) => {
+        return (
+          <Card
+            title={item.frontmatter.title}
+            timeframe={item.frontmatter.date}
+            description={item.compiledContent()}
+            tags={item.frontmatter.tags}
+            url={item.frontmatter.url}
+            url_name={"View project"}
+          />
+        );
+      })
+    }
+  </AccordionLayout>
+
+  <AccordionLayout title={"Certifications"} icon={"carbon:certificate"}>
+    {
+    certificates.map((item) => {
+        return (
+          <Card
+            title={item.frontmatter.title}
+            timeframe={item.frontmatter.date}
+            description={item.compiledContent()}
+            tags={item.frontmatter.tags}
+            url={item.frontmatter.url}
+            url_name={"View Certificate"}
+          />
+        );
+      })
+    }
+  </AccordionLayout>
+
+  <AccordionLayout title={"Blogs"} icon={"carbon:pen"}>
+    {
+      blogs.map((item) => {
+        return (
+          <Card
+            title={item.frontmatter.title}
+            timeframe={item.frontmatter.date}
+            description={item.compiledContent()}
+            url={item.frontmatter.url}
+            url_name={item.frontmatter.url_name}
+          />
+        );
+      })
+    }
+  </AccordionLayout>
+
+  <AccordionLayout title={"Files"} icon={"carbon:volume-file-storage"}>
+    <div class="flex justify-center w-full">
+      <div
+        class="card card-compact card-bordered border-[oklch(var(--p))] w-96 md:w-112 lg:w-128 hover:shadow-lg transition-all"
+      >
+        <figure>
+          <object data={PDF} type="application/pdf" width="100%"></object>
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Resume</h2>
+          <p>View and download my resume by clicking on the button below</p>
+          <div class="card-actions justify-end">
+            <a target="_blank" href={PDF}>
+              <button class="btn btn-outline">
+                <p>Download resume</p>
+                <Icon name="carbon:document-pdf" class="w-6 h-6 ml-1" />
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </AccordionLayout> -->
+
+  <AccordionLayout title={t('titles.contact')} icon={"carbon:location-person"}>
+    <div class="flex flex-wrap content-around gap-4 justify-center">
+      {
+        contacts.map((item) => {
+          return (
+            <ContactCard
+              url={item.url}
+              url_name={item.title}
+              icon={item.icon}
+            />
+          );
+        })
+      }
+    </div>
+  </AccordionLayout> 
+</div>
