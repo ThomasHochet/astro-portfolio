@@ -19,7 +19,7 @@ export const portfolio = {
       designation: "Developer",
       location: "Mitry-Mory, France",
       website: "thochet.fr",
-      description: "Go-enthusiast, I enjoy developing practical and functional applications that meet needs. I love photography, music, and video games."
+      description: "I enjoy developing practical and functional applications that meet needs. I love photography, music, and video games."
     },
     studies: [
       {
@@ -90,7 +90,7 @@ export const portfolio = {
       designation: "Développeur",
       location: "Mitry-Mory, France",
       website: "thochet.fr",
-      description: "Go-enthousiaste, j'aime développer des applications pratiques, fonctionnelles et répondant aux besoins. J'aime la photographie, la musique et les jeux-vidéos."
+      description: "J'aime développer des applications pratiques, fonctionnelles et répondant aux besoins. J'aime la photographie, la musique et les jeux-vidéos."
     },
     studies: [
       {
